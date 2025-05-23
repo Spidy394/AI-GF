@@ -5,9 +5,9 @@ from src.gemini_call import call_gemini
 def main():
     r = sr.Recognizer()
     with sr.Microphone() as source:
-        print("Talk")
+        print("Listening...")
         audio_text = r.listen(source)
-        print("Time over, thanks")
+        print("wait...")
 
         try:
             transcript = r.recognize_google(audio_text)
