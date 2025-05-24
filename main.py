@@ -24,7 +24,7 @@ def main():
                 print("Sorry, I did not get that:", str(e))
 
         if transcript.lower() == "goodbye" or transcript.lower() == "bye":
-            print("Sayonara!")
+            print("Sayonara! ❣️")
             break
 
 
