@@ -60,39 +60,30 @@ def convert_to_wav(audio_data: bytes, mime_type: str) -> bytes:
 
 def gemini_speak_text(text):
     client = genai.Client(api_key=GEMINI_KEY)
+
     model = "gemini-2.5-flash-preview-tts"
     contents = [
         types.Content(
             role="user",
-            parts=[{"text": text}],
+            parts=[
+                types.Part.from_text(text=text),
+            ],
         ),
     ]
     generate_content_config = types.GenerateContentConfig(
         temperature=1,
-        response_modalities=["audio"],
+        response_modalities=[
+            "audio",
+        ],
         speech_config=types.SpeechConfig(
-            multi_speaker_voice_config=types.MultiSpeakerVoiceConfig(
-                speaker_voice_configs=[
-                    types.SpeakerVoiceConfig(
-                        speaker="Speaker 1",
-                        voice_config=types.VoiceConfig(
-                            prebuilt_voice_config=types.PrebuiltVoiceConfig(
-                                voice_name="Zephyr"
-                            )
-                        ),
-                    ),
-                    types.SpeakerVoiceConfig(
-                        speaker="Speaker 2",
-                        voice_config=types.VoiceConfig(
-                            prebuilt_voice_config=types.PrebuiltVoiceConfig(
-                                voice_name="Puck"
-                            )
-                        ),
-                    ),
-                ]
-            ),
+            voice_config=types.VoiceConfig(
+                prebuilt_voice_config=types.PrebuiltVoiceConfig(
+                    voice_name="Aoede"
+                )
+            )
         ),
     )
+
     for chunk in client.models.generate_content_stream(
         model=model,
         contents=contents,

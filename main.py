@@ -1,7 +1,6 @@
 import speech_recognition as sr
 from src.gemini_call import call_gemini
-from src.gemini_tts import gemini_speak_text  # Use Gemini TTS
-#You look lonely, I can fix that....
+from src.gemini_tts import gemini_speak_text  
 
 def main():
     r = sr.Recognizer()
@@ -17,7 +16,7 @@ def main():
             if result:
                 reply = result['candidates'][0]['content']['parts'][0]['text']
                 print("Rupa: " + reply)
-                gemini_speak_text(reply)  # Use Gemini TTS
+                gemini_speak_text(reply) 
                 
         except Exception as e:
             print("Sorry, I did not get that:", str(e))
